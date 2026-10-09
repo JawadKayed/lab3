@@ -1,0 +1,142 @@
+/* Universal spacing reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: #f4f7f5;
+  color: #1d302f;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+/* Named areas for the outer page grid */
+.header { grid-area: header; }
+.nav { grid-area: nav; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+
+/* Mobile-first layout: one outer column and one card column */
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  gap: 16px;
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header,
+.nav,
+.main,
+.footer,
+.cards,
+.card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.header,
+.nav,
+.main,
+.footer {
+  border: 1px solid #b8cbc5;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.header {
+  background: #164e4a;
+  color: #ffffff;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+
+.nav {
+  background: #e2efeb;
+}
+
+.nav ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav a {
+  display: block;
+  border-radius: 3px;
+  padding: 8px 10px;
+  color: #123d39;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.nav a:hover {
+  background: #c9e0d9;
+}
+
+.nav a:focus-visible {
+  outline: 3px solid #a43d24;
+  outline-offset: 2px;
+}
+
+.main {
+  background: #ffffff;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.card {
+  border: 1px solid #c5d2ce;
+  border-left: 5px solid #28796e;
+  border-radius: 4px;
+  padding: 20px;
+  background: #f5faf8;
+}
+
+.card h2 {
+  margin-bottom: 8px;
+  color: #164e4a;
+  font-size: 1.25rem;
+}
+
+.footer {
+  background: #e9e4d9;
+  color: #3e3930;
+}
+
+/* Desktop layout: navigation beside main and two inner card columns */
+@media (min-width: 768px) {
+  .page-wrapper {
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-1 {
+    grid-column: 1 / -1;
+  }
+}
